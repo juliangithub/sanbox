@@ -67,7 +67,61 @@ void draw_retangle(int height , int width )
 	cout << endl;
 }
 
+void array_ref(int (&buf)[5])
+{
 
+	for(int i=0;i<5;i++)
+	{
+
+		cout<<i<< ": " << buf[i] <<endl;
+	}
+}
+
+	struct tel{
+		int idx;
+		char name[128];
+		int tel;
+	};
+
+	struct tel tels[]=
+	{
+		{1, "US", 61},
+		{3, "UK", 92},
+		{5, "RUSSA", 93},
+		{7, "AUS", 94},
+		{9, "CAN", 95},
+		{11, "China", 86},
+	};
+int search(int idx)
+{
+
+	for(int i=0; i< sizeof(tels)/sizeof(tel); i++)
+	{
+		if(tels[i].idx == idx){
+
+			cout << "index: " << i << "\t" << tels[i].idx << "\t" << tels[i].name << "\t" << tels[i].tel << endl;
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+int search(string name)
+{
+
+	cout << sizeof(tels) << "  "  << sizeof (tel) << endl;
+	for(int i=0; i< sizeof(tels)/sizeof(tel); i++)
+	{
+		if(tels[i].name == name){
+
+			cout << "index: " << i << "\t" << tels[i].idx << "\t" << tels[i].name << "\t" << tels[i].tel << endl;
+			return i;
+		}
+	}
+
+	return -1;
+}
 int main(int argc, char*argv[])
 {
 	
@@ -78,6 +132,8 @@ int main(int argc, char*argv[])
 	int num1 = -2;
 	//unsigned char * p = NULL;
 	const int bits = 31;
+
+	//format output hex dec oct
 	cout <<dec << num << endl;
 	cout <<oct << num << endl;
 	cout << "num hex:" << hex << num << endl;
@@ -85,6 +141,7 @@ int main(int argc, char*argv[])
 	cout <<dec << num1 << endl;
 	cout << "num1 hex:" << hex << num1 << endl;
 	
+	//how to store minus.(negative numver) or positive number.
 	cout << "num1 bin:" << (bitset<bits>)num1 << endl;
 	cout << "num  bin:" << (bitset<bits>)num << endl;
 	/*
@@ -97,10 +154,24 @@ int main(int argc, char*argv[])
 	int ret = my_pow(2,5);
 	cout << dec << "ret: " << ret <<endl;
 
+	//========================function def paramt================================================
 	draw_retangle();
 	//draw_retangle(20);
 	//draw_retangle(20, 30);
 	//draw_retangle(60, 40);
 
 	draw_triangle(10);
+
+	//========================================================================
+
+	int i;
+	int j[2]={11,22};
+	int k[5]={1,2,3,4,5};
+	//array_ref(&i);
+	//array_ref(j); //argument not array of 5
+	array_ref(k);
+
+	//function reload
+	search(11);
+	search("RUSSA");
 }

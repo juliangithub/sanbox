@@ -1,0 +1,138 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+   <script type="text/javascript" src="jquery-1.9.0.min.js"></script>  
+   <title>jQuery Alert</title>  
+   <style type="text/css">  
+     /* applied to the alert */  
+     .jqx-alert  
+     {  
+       position: absolute;  
+       overflow: hidden;  
+       z-index: 99999;  
+       margin: 0;  
+       padding: 0;  
+	   border-radius: 10px;
+     }  
+     /*applied to the header */  
+     .jqx-alert-header  
+     {  
+       outline: none;  
+       border: 0.5px solid #999; 
+       overflow: hidden;  
+       padding: 5px;  
+       height: auto;  
+       white-space: nowrap;  
+       overflow: hidden;  
+       background-color:#E8E8E8; background-image:-webkit-gradient(linear,0 0,0 100%,from(#fafafa),to(#dadada)); background-image:-moz-linear-gradient(top,#fafafa,#dadada); background-image:-o-linear-gradient(top,#fafafa,#dadada);     
+     }  
+     /*applied to the content*/  
+     .jqx-alert-content  
+     {  
+       outline: none;  
+       overflow: auto;  
+       text-align: center;  
+       background-color: #fff;  
+	   background: radial-gradient(ellipse, #FFFFFF, #E8E8E8);
+       padding: 5px;  
+       border: 0.5px solid #999;  
+       border-top: none;  
+	   
+     }  
+   </style>  
+   <script type="text/javascript">  
+     jqxAlert = {  
+       // top offset.  
+       top: 0,  
+       // left offset.  
+       left: 0,  
+       // opacity of the overlay element.  
+       overlayOpacity: 0.2,  
+       // background of the overlay element.  
+       overlayColor: '#ddd',  
+       // display alert.  
+       alert: function (message, title) {  
+         if (title == null) title = 'Alert';  
+         jqxAlert._show(title, message);  
+       },  
+       // initializes a new alert and displays it.  
+       _show: function (title, msg) {  
+         jqxAlert._hide();  
+         jqxAlert._handleOverlay('show');  
+         $("BODY").append(  
+                      '<div class="jqx-alert" style="width: auto; height: auto; overflow: hidden; white-space: nowrap;" id="alert_container">' +  
+                        '<div id="alert_title"></div>' +  
+                        '<div id="alert_content">' +  
+                          '<div id="message"></div>' +  
+                          '<input style="margin-top: 10px; align=center" type="button" value="OK" id="alert_button"/>' +  
+                        '</div>' +  
+                      '</div>');  
+         $("#alert_title").text(title);  
+         $("#alert_title").addClass('jqx-alert-header');  
+         $("#alert_content").addClass('jqx-alert-content');  
+         $("#message").text(msg);  
+         $("#alert_button").width(70);  
+         $("#alert_button").click(function () {  
+           jqxAlert._hide();  
+         });  
+         jqxAlert._setPosition();  
+       },  
+       // hide alert.  
+       _hide: function () {  
+         $("#alert_container").remove();  
+         jqxAlert._handleOverlay('hide');  
+       },  
+       // initialize the overlay element.   
+       _handleOverlay: function (status) {  
+         switch (status) {  
+           case 'show':  
+             jqxAlert._handleOverlay('hide');  
+             $("BODY").append('<div id="alert_overlay"></div>');  
+             $("#alert_overlay").css({  
+               position: 'absolute',  
+               zIndex: 99998,  
+               top: '0px',  
+               left: '0px',  
+               width: '100%',  
+               height: $(document).height(),  
+               background: jqxAlert.overlayColor,  
+               opacity: jqxAlert.overlayOpacity  
+             });  
+             break;  
+           case 'hide':  
+             $("#alert_overlay").remove();  
+             break;  
+         }  
+       },  
+       // sets the alert's position.  
+       _setPosition: function () {  
+         // center screen with offset.  
+         //var top = (($(window).height() / 2) - ($("#alert_container").outerHeight() / 2)) + jqxAlert.top;  
+         //var left = (($(window).width() / 2) - ($("#alert_container").outerWidth() / 2)) + jqxAlert.left;  
+		 var top = (($(document).height() / 2) - ($("#alert_container").outerHeight() / 2)) + jqxAlert.top;  
+		 var left = (($(document).width() / 2) - ($("#alert_container").outerWidth() / 2)) + jqxAlert.left;  
+         if (top < 0) {  
+           top = 0;  
+         }  
+         if (left < 0) {  
+           left = 0;  
+         }  
+         // set position.  
+         $("#alert_container").css({  
+           top: top + 'px',  
+           left: left + 'px'  
+         });  
+         // update overlay.  
+         $("#alert_overlay").height($(document).height());  
+       }  
+     }  
+   </script>  
+   <script type="text/javascript">  
+     $(document).ready(function () {  
+       jqxAlert.alert('沧海一声笑，滔滔两岸潮！');  
+     })  
+   </script>  
+ </head>  
+ <body>  
+ </body>  
+ </html>  

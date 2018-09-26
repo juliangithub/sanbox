@@ -9,14 +9,20 @@
 *	release notes：
 *
 ================================================================*/
-//#include "string.h"
+
+
 #include<iostream>
+//#include<exception>
+#include<string>
+#include<string.h>
+#include<stdexcept>
 #include<assert.h>
-
+//using std::cout;
+//using std::endl;
 using namespace std;
-
 int main()
 {
+
 	size_t n;
 	string s;
 	string prefix = "prefix_";
@@ -33,4 +39,6 @@ int main()
 		prefix = s;
 		cout << " = " << prefix << endl; 
 	}
+
+	return 0;
 }

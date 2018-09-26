@@ -16,6 +16,8 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <stdarg.h>
+
 #define	ETH_DATA_LEN	1500
 typedef struct PPPoETagStruct {
     unsigned int type:16;	/* tag type */
@@ -53,6 +55,29 @@ void print_buf(unsigned char *buf, unsigned int len)
 	printf("\n");
 }
 
+
+int demo( char *msg, ... ) 
+{ 
+
+va_list argp; 
+int argno = 0; 
+char *para; 
+
+va_start( argp, msg ); 
+while (1) 
+   { 
+    para = va_arg( argp, char); 
+       if ( strcmp( para, "") == 0 ) 
+           break; 
+       printf("Parameter #%d is: %s\n", argno, para); 
+       argno++; 
+} 
+va_end( argp ); 
+
+return 0; 
+}
+
+
 int main(){
 	//PPPoETag hostUniq;
 	//printf("addr type %0x\n", (void*)&hostUniq);
@@ -89,4 +114,14 @@ int main(){
 	print_buf(payload, sizeof(payload));
 	printf("------------------------------\n");
 	//printf("size: %zu payload %s\n", sizeof(payload), payload);
+
+
+	int i=1 ;
+	printf(" %s %d %d \t %d \n", __FILE__, __LINE__, i--, i++);
+
+
+
+	demo("DEMO", "This", "is", "a", "demo!", "  "); 
+
+
 }
