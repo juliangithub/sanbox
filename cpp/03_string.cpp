@@ -23,6 +23,13 @@ using namespace std;
 int main()
 {
 
+	string str1 = "stringA";
+	string str2(str1);
+	if(str1  == str2 )
+	{
+		cout << str1 << " == " << str2 << endl;
+	}
+	
 	size_t n;
 	string s;
 	string prefix = "prefix_";
