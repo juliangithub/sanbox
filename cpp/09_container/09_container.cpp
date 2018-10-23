@@ -55,9 +55,19 @@ int main(int argc, char const *argv[])
 	//deque
 	//deque enum
 	deque<int> dint{ 11, 22, 33, 44};
-	cout << dlist.size() <<endl;
 	list<int> cp_dint(dint.begin(), dint.end());
-	
+
+	list<int>::iterator l_iter = cp_dint.end();
+
+	while(l_iter != cp_dint.begin())
+	{
+		cout << "*l_iter: " << *l_iter << endl;
+		l_iter--;
+	}
+	cout << "*l_iter: " << *l_iter << endl;
+
+	cout << dint.size() <<endl;
+	cout << cp_dint.size() <<endl;
 
 	vector<string> v_str(sa, sa+4);
 	cout << v_str[3] << endl;
@@ -65,5 +75,19 @@ int main(int argc, char const *argv[])
 	list<string> l_head(v_str.begin(), mid);
 	deque<string> d_bottom(mid, v_str.end());
 
+	//
+	//迭代器运算 + - > < >= <=  只适用于vector/deque 两种容器。
+	//== ！= 适用于所有容器类型。
+	#if 0
+	list <int> l_uninit;
+	list <int>::iterator itrt1 = l_uninit.begin();
+	list <int>::iterator itrt2 = l_uninit.end();
+	while(itrt1 < itrt2){
+		int i;
+		cout << i++ <<endl; 
+	}
+	#endif
+
+	
 	return 0;
 }
