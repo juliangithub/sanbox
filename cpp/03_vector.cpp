@@ -30,6 +30,11 @@ int main()
 	cout << vc3[1] <<endl;
 	
 	
+	for(vector<int>::size_type idx=0; idx != vc3.size(); idx++)
+	{
+		cout << "idx:" << idx <<"\t:"<< vc3[idx] <<endl;
+	}
+	
 	cout<< "******int vector*********" << endl;
 	std::vector<int> vi1(10);
 	std::vector<int> vi2(10, 5);
