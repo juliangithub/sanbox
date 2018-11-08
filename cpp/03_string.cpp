@@ -22,6 +22,11 @@
 using namespace std;
 int main()
 {
+	//declare type
+	string s1;
+	string s2(s1);
+	string s3("string3");
+	string s4(4, '4');
 
 	string str1 = "stringA";
 	string str2(str1);

@@ -1,0 +1,30 @@
+
+============= MEMWATCH 2.67 Copyright (C) 1992-1999 Johan Lindh =============
+
+Started at Mon Nov  5 18:08:45 2018
+
+Modes: __STDC__ 64-bit mwDWORD==(unsigned int)
+mwROUNDALLOC==8 sizeof(mwData)==56 mwDataSize==56
+
+double-free: <12> ../tests/my_test.c(210), 0x20f5720 was freed from ../tests/my_test.c(208)
+double-free: <14> ../tests/my_test.c(210), 0x20f5fc0 was freed from ../tests/my_test.c(208)
+double-free: <16> ../tests/my_test.c(210), 0x20f6a50 was freed from ../tests/my_test.c(208)
+double-free: <18> ../tests/my_test.c(210), 0x20f72f0 was freed from ../tests/my_test.c(208)
+double-free: <20> ../tests/my_test.c(210), 0x20f7b90 was freed from ../tests/my_test.c(208)
+overflow: <24> ../tests/my_test.c(92), 10 bytes alloc'd at <23> ../tests/my_test.c(83)
+underflow: <28> ../tests/my_test.c(146), 10 bytes alloc'd at <27> ../tests/my_test.c(131)
+
+Stopped at Mon Nov  5 18:08:45 2018
+
+unfreed: <29> ../tests/my_test.c(160), 50 bytes at 0x20f5fc0  	{00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................}
+unfreed: <10> ../tests/my_test.c(198), 1024 bytes at 0x20f7fe0  	{FE FE FE FE FE FE FE FE FE FE FE FE FE FE FE FE ................}
+unfreed: <8> ../tests/my_test.c(198), 1024 bytes at 0x20f7740  	{FE FE FE FE FE FE FE FE FE FE FE FE FE FE FE FE ................}
+unfreed: <6> ../tests/my_test.c(198), 1024 bytes at 0x20f6ea0  	{FE FE FE FE FE FE FE FE FE FE FE FE FE FE FE FE ................}
+unfreed: <4> ../tests/my_test.c(198), 1024 bytes at 0x20f6410  	{FE FE FE FE FE FE FE FE FE FE FE FE FE FE FE FE ................}
+unfreed: <2> ../tests/my_test.c(198), 1024 bytes at 0x20f5b70  	{FE FE FE FE FE FE FE FE FE FE FE FE FE FE FE FE ................}
+
+Memory usage statistics (global):
+ N)umber of allocations made: 15
+ L)argest memory usage      : 10240
+ T)otal of all alloc() calls: 10330
+ U)nfreed bytes totals      : 5170

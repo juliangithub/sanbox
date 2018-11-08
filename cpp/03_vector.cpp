@@ -13,6 +13,12 @@ using std::bitset;
 
 int main()
 {
+	//vector declare type.
+	std::vector<int> v1;
+	std::vector<int> v2(v1);
+	std::vector<int> v3(3,9);
+	std::vector<int> v4(4);
+
 	cout<< "*******char vector********" << endl;
 	std::vector<char> vc_none;
 	cout << vc_none.size() << endl;
@@ -52,10 +58,10 @@ int main()
 	}
 
 	cout<< "******string vector*********" << endl;
-	std::vector<string> v3;
-	std::vector<string> v4(v3);
-	std::vector<string> v7{"str7"};
-	cout << "v7 size: "<< v7.size() <<endl;
+	std::vector<string> vs3;
+	std::vector<string> vs4(vs3);
+	std::vector<string> vs7{"str7"};
+	cout << "vs7 size: "<< vs7.size() <<endl;
 	vector<string> v_str(3,"kkkkk");
 	for(vector<string>::size_type idx=0; idx != v_str.size(); idx++)
 	{
