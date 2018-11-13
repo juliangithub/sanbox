@@ -15,17 +15,42 @@
 class constructor
 {
 public:
-	constructor():num(121),dob(3.2){};
+	constructor(int num, double dob):num(999),dob(9.99),cint(99){
+		this->num = num;
+		this->dob = dob;
+	};
 
-	~constructor();
+	// constructor(int num, double dob, int cit):num(888),dob(8.88),cint(8){
+	// 	cint = cit;//Wrong .
+	// };
+		//const element initial example .right !
+	constructor(int num, double dob, int cit):num(777),dob(7.77),cint(cit){
+
+	};
+
+	constructor(int num, double dob, char init_flag):num(777),dob(7.77),cint(num){
+
+	};
+
+	constructor(void):num(666),dob(6.66),cint(6){
+
+	};
+	~constructor(){
+		//do nothings;
+	};
 
 	int num_read(){return num;}
 	void num_write(int val){num = val;}
 	double dob_read(){return dob;}
 	void dob_write(double val){dob = val;}
+	void stack_pram(void);
+	inline void dump() const;
+	void dump1();
 private:
+	//initial value set by constructor initial param list.
 	int num;
 	double dob;
+	const int cint;
 	
 };
    
