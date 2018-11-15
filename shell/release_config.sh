@@ -1,10 +1,7 @@
 #!/bin/bash
 
-#boot="bootcode_rtl8196d"
-#kernel="linux-2.6.30"
-
-boot="bootcode_rtl8197f"
-kernel="linux-3.10"
+boot="uboot"
+kernel="linux-2.6.30"
 
 echo "boot name : $boot"
 echo "kernel name : $kernel"
@@ -52,13 +49,6 @@ if [ ! -f "./users/.config" ]; then
 else
 		cp -rf ./users/.config ./config_release/users
 fi
-
-#mkdir -p ./config_release/bootcode_rtl8196d
-#cp bootcode_rtl8196d/.config ./config_release/bootcode_rtl8196d
-#mkdir -p ./config_release/linux-2.6.30
-#cp linux-2.6.30/.config ./config_release/linux-2.6.30
-#mkdir -p ./config_release/users
-#cp users/.config ./config_release/users
 
 tar -cf config_release.tar config_release
 echo "=====release config file success ===="
