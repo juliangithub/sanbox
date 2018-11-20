@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
 	cout << Bar::BarNoVal() <<endl;
 	Bar::BarNoVal(88);
 	cout << Bar::BarNoVal() <<endl;
-	cout << Bar::FooVal()<<endl;
+	cout << Bar::FoVal()<<endl;
 
 	cout << Bar::callsFooVal()<<endl;
 	cout << Bar::callsFooVal()<<endl;

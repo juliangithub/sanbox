@@ -40,7 +40,7 @@ class Bar
 		~Bar(){
 
 		}
-		static int FooVal(){
+		static int FoVal(){
 			// return Bar::Fo.id;//error: ‘int Foo::id’ is private
 			return Bar::Fo.gid();
 		}
