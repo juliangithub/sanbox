@@ -73,7 +73,7 @@ hasptr& hasptr::operator=(const hasptr& orig){
 
 int main(int argc, char const *argv[])
 {
-	int ipaddr = 192<<24 | 168 << 16 | 88 << 8 | 254 << 0;
+	int ipaddr = ntohl(192<<24 | 168 << 16 | 88 << 8 | 254 << 0);
 	int *ip = new int;
 	*ip = ipaddr;	
 	//int ip =0xc0a858fe;

@@ -13,7 +13,7 @@
 #include <string.h>
 int main(int argc, char const *argv[])
 {
-	    int a = 2;
+	int a = 2;
         int b = 3;
         printf("[%d] %d \t %d \n", __LINE__, a, b);
         a = a+b;

@@ -1,0 +1,9 @@
+LDADD = ../lib/libcompat.a
+AM_CFLAGS = -D_DEBUG_MAIN_ -I ../usr/local/include
+AM_LDFLAGS = -lpthead -lssl -L /usr/local/lib
+noinst_PROGRAMS = test1 test2 test3 test4
+lib_LTLIBRARIES = libmylib.la
+libmylib_la_SOURCE = a.c b.c c.c d.c
+libnewfile_la_LDFLAGS = -lpthread
+libnewfile_la_CFLAGS = -I ../include
+include_HEADERS = ../include/mylib.h
