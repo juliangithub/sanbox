@@ -35,6 +35,11 @@ int main()
 		cout << str1 << " == " << str2 << endl;
 	}
 	
+	string line;
+	cout << "pls input line " <<endl;
+	while(getline(cin, line))
+		cout << "input line: " << line << endl;
+
 	size_t n;
 	string s;
 	string prefix = "prefix_";
@@ -51,6 +56,8 @@ int main()
 		prefix = s;
 		cout << " = " << prefix << endl; 
 	}
+
+
 
 	return 0;
 }

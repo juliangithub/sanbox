@@ -5,7 +5,9 @@ int main()
 	std::cout << "hello world C++" << std::endl;
 	int a;
 	int b;
+	const char *str = "constant string";
 	char *str = "constant string";
+	//warning: deprecated conversion from string constant to ‘char*’
 	char buf[123] ="string in buffer";
 	int intval = intval;
 	int direct_init(10);
