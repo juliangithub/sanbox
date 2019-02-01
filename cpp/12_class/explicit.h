@@ -16,16 +16,17 @@
 class sales_item
 {
 public:
-	#ifndef EN_EXPLICIT
+	
+#ifndef EN_EXPLICIT
 	sales_item(const std::string &book = ""):
 		isbn(book),units_sold(0),revenue(0.0){}
 	sales_item(std::istream &is);
-	#else
+#else
 	explicit sales_item(const std::string &book = ""):
 		isbn(book),units_sold(0),revenue(0.0){}
 	explicit sales_item(std::istream &is);
 
-	#endif
+#endif
 
 	~sales_item(){}
 

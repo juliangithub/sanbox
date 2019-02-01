@@ -1,6 +1,6 @@
 
 
-#include <stdio.h>
+// #include <stdio.h>
 
 #define HAVE_IPV6
 #define NO_FORK
@@ -51,11 +51,19 @@ static char *compile_opts =
 
 
 
-
+#define PSQR(x) printf("the square value of " #x " is %d \n", ((x)*(x)))
+#define XNUM(n) x##n
+#define PRINT_XN(n) printf("the value of " #n " is \n", x##n)
 int main (int argc, char **argv)
 {
 
-printf("%s\n", compile_opts);
+	int XNUM(1) = 1010;
+	int XNUM(22) = 2020;
+	PRINT_XN(1);
+	PRINT_XN(22);
+	int a = 2;
+	PSQR(a);
+	printf("%s\n", compile_opts);
 
 
 }

@@ -12,6 +12,36 @@
 //#include "const.h"
 #include <iostream>
 using namespace std;
+
+class screen
+{
+public:
+	 screen(string str){
+	 	name = str;
+	 }
+	// ~screen();
+	screen& display(){
+		cout << "noconst display  name: " <<name<<endl;
+		// do_display(); 
+		 return *this;
+	}
+	const screen& display()const{
+		cout << "const display  !!!\t name: " << name <<endl;
+		// do_display();
+		return *this;
+	}
+	screen& set(string  str){
+		name = str;
+		return *this;
+	}
+
+private:
+	string  name;
+	void do_display()const{
+		cout << "do_display" <<endl;
+	}
+};
+
 int main(int argc, char const *argv[])
 {
 	const char cststr[] = " const string";
@@ -32,8 +62,15 @@ int main(int argc, char const *argv[])
 
 	//error: assignment of read-only variable ‘p_ccst’
 	 // p_ccst = str2;
-//assignment of read-only location ‘*(const char*)p_ccst’
-	 *p_ccst = 'C';
 
+//assignment of read-only location ‘*(const char*)p_ccst’
+	 // *p_ccst = 'C';
+
+	 screen nocst_scr("no const string");
+	 const screen cst_scr("const string");
+	 nocst_scr.display();
+	 cst_scr.display();
+
+	 nocst_scr.set("noconst updated name").display();
 	return 0;
 }

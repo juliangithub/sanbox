@@ -25,21 +25,58 @@ function traverse_json_obj(jsonObj){
 
 
 function show_radio_sel(){
-	var radio_sel = $('input[id=sys_mode]').filter(':checked').val();
-	//var radio_sel = $('input[name="sys_mode"]').filter(':checked').val();
+	//var radio_sel = $('input[id=sys_mode]').filter(':checked').val();
+	var radio_sel = $('input[name="sys_mode"]').filter(':checked').val();
 	alert(radio_sel)	;
+
+	 
 }
+
+function show_check_box(){
+	var wan_enable = ($("#wan_enable").attr("checked")?1:0);
+}
+
+function set_check_box(var flag){
+	$("#wan_enable").attr("checked", (flag == "1"?1:0));
+}
+
+function init(){
+	alert("__init__");
+	//$("#sys_mode").val(2)
+
+	
+	//$("input[name=sys_mode][value='2']").prop("checked",true);
+	var value = 0;
+	$("#sys_mode" + value).attr('checked', 'checked');
+	//var name="sys_mode"
+	//var value = 2;
+	//$("input[name='"+name+"'][value='"+value+"']").prop('checked', true);
+	
+	
+	 
+	//$(":radio[name=sys_mode]").val(2);
+	
+	 //$(":radio[name=sin]").val([useranswer]);
+}
+
 $(document).ready(function() {
-
-
-
-
 
 	alert("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 	var wl_band =122342234;
 	var wl_channel = 2;
 	var wl_adv_opower = "power";
 	var wl_bandwidth = "band";
+	
+	alert($("#hlojqry").html());
+	alert($("#hlo_div").html());
+	alert($("#hlojqry").text());
+	alert($("#hlo_div").text());
+	
+	alert($("#hlo_span").html());
+	$("#hlo_span").html("22222222222222222");;
+	
+	
+	alert($("input[name='wan_mask']").val());
 	
 myObj = {
     "name":"网站",
@@ -102,14 +139,23 @@ myObj = {
 });
 </script>
 </head>
-<body>
+<body onload="init()">
 <div class="dialog">
-	<label><input type="radio" name="sys_mode" id="sys_mode" value="0" onchange="show_radio_sel()"> route</label>
-	<label><input type="radio" name="sys_mode" id="sys_mode" value="1" onchange="show_radio_sel()"> bridge</label>
-	<label><input type="radio" name="sys_mode" id="sys_mode" value="2" onchange="show_radio_sel()"> repeater</label>
+	<label><input type="radio" name="sys_mode" id="sys_mode0" value="0" onchange="show_radio_sel()"> route</label>
+	<label><input type="radio" name="sys_mode" id="sys_mode1" value="1" onchange="show_radio_sel()"> bridge</label>
+	<label><input type="radio" name="sys_mode" id="sys_mode2" value="2" onchange="show_radio_sel()"> repeater</label>
 <dt >dt</dt>
 <dl id="debug"></dl>
 </div> 
+<div id ="hlo_div">
+<strong id="hlojqry">hello jquery</strong>
+</div>
+
+<span style="width:160px;" id="hlo_span">
+11111111111111
+</span>
+
+<input  type="text" name="wan_mask" value="255.255.0.0"/>
 
 </body>
 </html>
