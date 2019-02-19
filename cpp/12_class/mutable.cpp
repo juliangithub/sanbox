@@ -19,25 +19,35 @@ public:
 	screen();
 	~screen();
 	const screen& show(int k = 121, int l = 323) const {
+		cout << "============= const function ============= " <<endl;
+
 		cout << "k:" << k <<endl;
 		cout << "l:" << l <<endl;
 
 		cout << "x:" << x <<endl;
 		cout << "y:" << y <<endl;
-	//	ro += 1234;//screen::ro’ in read-only object // mutable 
+		// ro += 1234;//screen::ro’ in read-only object // mutable 
 		cout << "ro:" << ro <<endl;
-		cout << "rw:" << ++rw << endl;
+		cout << "rw:" << ++rw << endl; 
 		cout << endl;
+		cout << "============= const function ============= " <<endl <<endl;
 		return *this;
 	}
 
 	 screen& show(int h = 11)
 	{
-		ro += 5555;
+		cout << "============= unconst function ============= " <<endl;
 		cout << "ro:" << ro <<endl;
-		cout << "h:" << h <<endl;
+		ro += h;
+		cout << "ro:" << ro <<endl;
+		cout << "h:" << h <<endl;\
+		x += h;
+		y += h;
+		z += h;
 		cout << "x:" << x <<endl;
+		cout << "y:" << y <<endl;
 		cout << "z:" << z <<endl<<endl;
+		cout << "============= unconst function =============" <<endl <<endl;
 		return *this;
 	}
 private:
@@ -66,6 +76,6 @@ int main(int argc, char const *argv[])
 	sc2.show();
 	//rw add
 	sc2.show();
-	//sc2.show(111, 222); //cosnt object call unconst function Error.
+	//sc2.show(111, 222); //const object call unconst function Error.
 	return 0;
 }

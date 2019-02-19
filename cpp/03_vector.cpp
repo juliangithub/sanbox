@@ -60,7 +60,7 @@ int main()
 	cout<< "******string vector*********" << endl;
 	std::vector<string> vs3;
 	std::vector<string> vs4(vs3);
-	std::vector<string> vs7{"str7"};
+	std::vector<string> vs7{"str7", "vs7_str2"};//C++98 ‘vs7’ must be initialized by constructor, not by ‘{...}’
 	cout << "vs7 size: "<< vs7.size() <<endl;
 	vector<string> v_str(3,"kkkkk");
 	for(vector<string>::size_type idx=0; idx != v_str.size(); idx++)
@@ -74,7 +74,7 @@ int main()
 	string word("stridx");
 	for(vector<string>::size_type idx=5; idx != 0 ;idx--)
 	{
-		v_str_empt.push_back(word + to_string(idx));
+		v_str_empt.push_back(word + to_string(idx)); //‘to_string’ was not declared in this scope
 	}
 	cout << "v_str_empt.size() " << v_str_empt.size() <<endl;
 

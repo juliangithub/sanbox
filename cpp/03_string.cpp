@@ -35,14 +35,36 @@ int main()
 		cout << str1 << " == " << str2 << endl;
 	}
 	
-	string line;
-	cout << "pls input line " <<endl;
-	while(getline(cin, line))
-		cout << "input line: " << line << endl;
+
 
 	size_t n;
-	string s;
-	string prefix = "prefix_";
+	string s = "prefix_" ;
+	string prefix = "prefiy_";
+	if (s == prefix)
+	{
+		cout << "s == prefix" <<endl;
+
+	}
+
+	if (s != prefix)
+	{
+		cout << "s != prefix" <<endl;
+
+	}
+
+	if (s <= prefix)
+	{
+		cout << "s <= prefix" <<endl;
+
+	}
+
+	if (s >= prefix)
+	{
+		cout << "s >= prefix" <<endl;
+
+	}
+
+
 	while(cin >> s)
 	{
 		assert(s.size() < 10);
@@ -57,6 +79,11 @@ int main()
 		cout << " = " << prefix << endl; 
 	}
 
+
+	string line;
+	cout << "pls input first line " <<endl;
+	while(getline(cin, line))
+		cout << "input line: " << line << endl;
 
 
 	return 0;

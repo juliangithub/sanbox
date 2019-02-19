@@ -69,12 +69,13 @@ void draw_retangle(int height , int width )
 
 void array_ref(int (&buf)[5])
 {
-
+	cout <<__func__ <<endl;
 	for(int i=0;i<5;i++)
 	{
 
 		cout<<i<< ": " << buf[i] <<endl;
 	}
+	cout << endl <<endl;
 }
 
 	struct tel{
@@ -163,12 +164,12 @@ int main(int argc, char*argv[])
 	draw_triangle(10);
 
 	//========================================================================
-
+	//array reference
 	int i;
 	int j[2]={11,22};
 	int k[5]={1,2,3,4,5};
-	//array_ref(&i);
-	//array_ref(j); //argument not array of 5
+	// array_ref(&i);// error: invalid initialization of non-const reference of type ‘int (&)[5]’ from an rvalue of type ‘int*’
+	//array_ref(j); //error: invalid initialization of reference of type ‘int (&)[5]’ from expression of type ‘int [2]’
 	array_ref(k);
 
 	//function reload

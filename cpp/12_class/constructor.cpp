@@ -21,6 +21,9 @@ int main(int argc, char const *argv[])
 {
 	constructor* con1  = new constructor(11, 11.11);
 	con1->dump();
+	cout << "num read "<< con1->num_read()<<endl;
+	con1->num_write(1111);
+	cout << "num read "<< con1->num_read()<<endl;
 	//con1->stack_pram();
 	cout << "*******************************" << endl;
 	con1->dump1();
@@ -35,7 +38,7 @@ int main(int argc, char const *argv[])
 // inline declared in the class declaration; no need to repeat on definition.
 void constructor :: dump() const {
 	//call stack_pram compile faild.
-	// stack_pram();
+	 // stack_pram(); // error: passing ‘const constructor’ as ‘this’ argument discards qualifiers [-fpermissive]
 	cout << &num << ":" << num << endl;
 	cout << &dob << ":" << dob << endl;
 	return ;
