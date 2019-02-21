@@ -10,33 +10,29 @@ function traverse_json_obj(jsonObj){
 	for(var p in jsonObj){
 	//alert(p +  " " + typeof(jsonObj[p]) +":"+jsonObj[p]);
 
-	if(typeof(jsonObj[p])== "object"){
-		//alert(p +  " " + typeof(jsonObj[p]) +":"+jsonObj[p]);
-		traverse_json_obj(jsonObj[p]);
-	}
-	else{
-		//alert(p +  " " + typeof(jsonObj[p]) +":"+jsonObj[p]);
-		obj_str += p +  " : " + jsonObj[p] +" : " +  typeof(jsonObj[p])+ ",<br/>";
-	}
-	
+		if(typeof(jsonObj[p])== "object"){
+			//alert(p +  " " + typeof(jsonObj[p]) +":"+jsonObj[p]);
+			traverse_json_obj(jsonObj[p]);
+		}
+		else{
+			//alert(p +  " " + typeof(jsonObj[p]) +":"+jsonObj[p]);
+			obj_str += p +  " : " + jsonObj[p] +" : " +  typeof(jsonObj[p])+ ",<br/>";
+		}
 	}
 }
-
 
 
 function show_radio_sel(){
 	//var radio_sel = $('input[id=sys_mode]').filter(':checked').val();
 	var radio_sel = $('input[name="sys_mode"]').filter(':checked').val();
-	alert(radio_sel)	;
-
-	 
+	alert(radio_sel);
 }
 
 function show_check_box(){
 	var wan_enable = ($("#wan_enable").attr("checked")?1:0);
 }
 
-function set_check_box(var flag){
+function set_check_box(flag){
 	$("#wan_enable").attr("checked", (flag == "1"?1:0));
 }
 
@@ -78,7 +74,7 @@ $(document).ready(function() {
 	
 	alert($("input[name='wan_mask']").val());
 	
-myObj = {
+var myObj = {
     "name":"网站",
     "num":3,
     "sites": [
@@ -146,7 +142,7 @@ myObj = {
 	<label><input type="radio" name="sys_mode" id="sys_mode2" value="2" onchange="show_radio_sel()"> repeater</label>
 <dt >dt</dt>
 <dl id="debug"></dl>
-</div> 
+</div>
 <div id ="hlo_div">
 <strong id="hlojqry">hello jquery</strong>
 </div>
@@ -154,7 +150,7 @@ myObj = {
 <span style="width:160px;" id="hlo_span">
 11111111111111
 </span>
-
+<br>
 <input  type="text" name="wan_mask" value="255.255.0.0"/>
 
 </body>

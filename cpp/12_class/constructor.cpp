@@ -24,6 +24,9 @@ int main(int argc, char const *argv[])
 	cout << "num read "<< con1->num_read()<<endl;
 	con1->num_write(1111);
 	cout << "num read "<< con1->num_read()<<endl;
+
+	cout << "num_globald "<< con1->num_global()<<endl;
+	
 	//con1->stack_pram();
 	cout << "*******************************" << endl;
 	con1->dump1();
@@ -33,6 +36,9 @@ int main(int argc, char const *argv[])
 	con2.dump();
 	constructor con9;
 	con9.dump();
+
+	struct_class obj_struct;
+	obj_struct.class_scope();
 	return 0;
 }
 // inline declared in the class declaration; no need to repeat on definition.
@@ -55,4 +61,15 @@ void constructor:: stack_pram() {
 	int stk;
 	cout << &stk<< ":" << stk << endl;
 	cout << __FILE__ << __LINE__ <<endl;
+}
+
+void struct_class::class_scope(){
+	index index_scope = 123;
+	cout << "index_scope:" << index_scope <<endl;
+}
+
+struct_class::index struct_class::return_scope(){
+	index index_scope = 456;
+	cout << __func__ << index_scope <<endl;
+	return index_scope;
 }

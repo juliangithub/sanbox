@@ -20,13 +20,25 @@ struct struct_class
 	int public_element_function()const {return public_element_num;}
 
 	public:
+		typedef std::string::size_type index;
+		
 		int num_read()const {return num;}
 		void num_write(int val){num = val;}
+		void class_scope();
+
+		index return_scope(); 
+		//typedef std::string::size_type index; //error: ‘index’ does not name a type
+
 	private:
 		int num;
 		double dob;
+		index cursor;
+		index height, width;
 
 };
+
+int num = 123321;
+
 class constructor
 {
 	// if the class is defined using the class keyword , then the
@@ -35,8 +47,8 @@ class constructor
 	int private_element_function()const {return private_element_num;}
 public:
 	constructor(int num, double dob):num(999),dob(9.99),cint(99){
-		this->num = num;
-		this->dob = dob;
+		// this->num = num;
+		// this->dob = dob;
 	};
 
 	// constructor(int num, double dob, int cit):num(888),dob(8.88),cint(8){
@@ -54,11 +66,29 @@ public:
 	constructor(void):num(666),dob(6.66),cint(6){
 
 	};
+
+	//constructors may not be cv-qualified
+	// constructor(long flag )const{
+	// };
+
+	//error: assignment of read-only member ‘constructor::cint’
+	// constructor(int NO_){
+	// 	cint = NO_;
+	// };
+	constructor(int NO_):cint(NO_){
+		//explain how to init const member.
+	};
+
 	~constructor(){
 		//do nothings;
 	};
 
 	int num_read()const {return num;}
+
+	int num_global()const {
+		return ::num;
+		//:: global scope tag.
+	}
 
 	//error: assignment of member ‘constructor::num’ in read-only object
 	// void num_write(int val)const{num = val;}
@@ -76,5 +106,16 @@ private:
 	const int cint;
 	
 };
-   
+
+class init_step
+{
+	int i;
+	int j;
+public:
+	//run-time errpr: i is initialized befor j.
+	init_step(int val):j(val), i(j){	};
+	init_step(int val, int reload):j(val), i(val){		};
+	~init_step();
+	
+};
 #endif //CONSTRUCTOR_H

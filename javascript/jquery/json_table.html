@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<script type="text/javascript" src="jquery-1.9.0.min.js"></script>
+<style type="text/css">
+.list_black {}
+.list_white {}
+</style>
+
+<script language="javascript">
+
+function show_unauthlist()
+{
+    var formname = $("#formname").val();
+    var gtmstring = "formname:"+formname+"&action:get_table&argument:";
+    $.ajax({
+            type: "POST",
+            url: "cgi-bin/webproc.cgi",
+            data: gtmstring,
+            dataType: "json",
+            success: function(msg){
+				$.each(msg, function (i, w_list)
+				{
+					var w_row = w_list.row;
+                    var w_mac = w_list.cnu_mac
+					
+					//创建表格
+					var create_tr = "<tr>"
+                        +"<td width='20'><input type='checkbox' name='input_check_' onclick='util_checkbox_oncheck();' id="+w_mac+"></td>"
+						 + "<td >" + w_row + "</td>" 
+						 + "<td >" + w_mac+ "</td>"
+						 + "</tr>";
+					//alert(create_tr);
+					$("#table_cnu_unauthlist").append(create_tr);
+				}
+				);
+				
+              }
+        
+        });	
+
+
+}
+
+function util_checkbox_oncheck(){
+
+	alert("Are you sure to del all entry !");
+}
+
+var employees = [
+{ "firstName":"Bill" , "lastName":"Gates" },
+{ "firstName":"George" , "lastName":"Bush" },
+{ "firstName":"Thomas" , "lastName": "Carter" }
+];
+
+function append_table_td(){
+	$.each(employees, function (i, w_list)
+		{
+			var fname = w_list.firstName;
+			var lname = w_list.lastName
+			var create_tr = "<tr>"
+	                        +"<td width='20'><input type='checkbox' name='input_check_' onclick='util_checkbox_oncheck();' id="+fname+"></td>"
+							 + "<td >" + fname + "</td>" 
+							 + "<td >" + lname+ "</td>"
+							 + "</tr>";
+			$("#table_employees").append(create_tr);
+		}
+	);
+}
+
+var urlJSON = [
+{ "index":"1" , "ruleMode":"list_black", "url" : "www.black1.com"},
+{ "index":"2" , "ruleMode":"list_white", "url" : "www.white1.com"}, 
+{ "index":"3" , "ruleMode":"list_black", "url" : "www.black2.com"},
+{ "index":"4" , "ruleMode":"list_white", "url" : "www.white2.com"}
+];
+
+function append_ul_li(urls){
+	$.each(urls, function (i, cell)
+		{
+			var index = cell.index;
+			var ruleMode = cell.ruleMode;
+			var url = cell.url;
+			var create_tr = "<li id='em_" + index + "'" 
+							+ "class='" + cell.ruleMode + "'"
+							+ "<em><input id='select" + index + "'" + "size='16' maxlength='20' bgcolor='#e1e1e1' readonly='' " 
+							+ "name='select" + index + "'" + "value='" + url + "'" 
+							+ "</em><span onClick='del(" + index + ");'> </span></li>";
+							
+			$("#list").append(create_tr);
+		}
+	);
+	
+	delUrlfilterEntry();
+}
+
+
+function delUrlfilterEntry()
+{
+	
+	var nums = 4
+	var url = $("#url").val();
+	var jsonStr = "[" ;
+	for(var i=1;i<=nums; i++){
+		jsonStr += "{" ;
+		jsonStr += ("\"index\":\"" + i + "\",");
+		jsonStr += ("\"ruleMode\":\"" + $("#em_"+i).attr("class") + "\",");
+		jsonStr += ("\"url\":\"" + $("#select" +i).val()) + "\"";
+		jsonStr += "}" ;
+		
+		if(i<nums)
+		{
+			jsonStr += "," ;
+		}
+		
+	}
+	jsonStr += "]" ;
+	
+	$("#debug").html(jsonStr);
+
+}
+
+</script>
+</head>
+<body onload="append_ul_li(urlJSON)">
+
+    <table id="table_employees" class="box_tn" align="center" border="0" cellpadding="5" cellspacing="1" width="100%">
+    <tbody>
+      <tr>
+        <td class="titleCell" width="5%">
+            <input type="checkbox" id="cball" onClick="util_cball_onclick();">
+        </td>
+        <td class="titleCell" width="10%">姓氏</td>
+        <td class="titleCell" width="85%">名字</td>
+      </tr>
+    </tbody>
+    </table>
+
+<!--
+<div class="maclist">
+<ul>
+	<li id="Urladd" name="Urladd"   style="display:none"><em><input type="text" id="url" name="url" size=16 maxlength=30 > </em></li>
+	<input type="hidden" value="Delete Selected" name="deleteSelFilterUrl">
+	<input type="hidden" id="urlfilter_num" value="6">
+	<li id="em_1" class="list_black"><em><input id="select1" size="16" maxlength="20" bgcolor="#e1e1e1" readonly="" name="select1" value="www.balck2.com"></em><span onclick="del(1);"></span></li>
+	<li id="em_2" class="list_black"><em><input id="select2" size="16" maxlength="20" bgcolor="#e1e1e1" readonly="" name="select2" value="www.balck1.com"></em><span onclick="del(2);"></span></li>
+	<li id="em_3" class="list_white"><em><input id="select3" size="16" maxlength="20" bgcolor="#e1e1e1" readonly="" name="select3" value="www.white1.com"></em><span onclick="del(3);"></span></li>
+	<li id="em_4" class="list_white"><em><input id="select4" size="16" maxlength="20" bgcolor="#e1e1e1" readonly="" name="select4" value="www.white2.com"></em><span onclick="del(4);"></span></li>
+	<li id="em_5" class="list_black"><em><input id="select5" size="16" maxlength="20" bgcolor="#e1e1e1" readonly="" name="select5" value="www.balck3.com"></em><span onclick="del(5);"></span></li>
+	<li id="em_6" class="list_black"><em><input id="select6" size="16" maxlength="20" bgcolor="#e1e1e1" readonly="" name="select6" value="www.balck5.com"></em><span onclick="del(6);"></span></li>
+</ul>
+</div>
+-->
+
+<div class="maclist">
+<ul id="list">
+	<li id="Urladd" name="Urladd"   style="display:none"><em><input type="text" id="url" name="url" size=16 maxlength=30 > </em></li>
+	<input type="hidden" value="Delete Selected" name="deleteSelFilterUrl">
+	<input type="hidden" id="urlfilter_num" value="6">
+
+</ul>
+</div>
+
+
+<dl id="debug"></dl>
+
+</body>
+</html>
