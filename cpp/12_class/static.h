@@ -42,19 +42,23 @@ class Bar
 		}
 		static int FoVal(){
 			// return Bar::Fo.id;//error: ‘int Foo::id’ is private
-			return Bar::Fo.gid();
+			// return Bar::Fo.gid();
+			return Fo.gid();
 		}
 
 		static int callsFooVal(){
-			return Bar::BarNo++;
+			// return Bar::BarNo++;
+			return BarNo ++;
 		}
 
 		static void BarNoVal(int val){
-			Bar::BarNo = val;
+			//Bar::BarNo = val;
+			BarNo = val;
 		}
 
 		static int BarNoVal(){
-			return Bar::BarNo ;
+			//return Bar::BarNo ;
+			return BarNo;
 		}
 
 	private:

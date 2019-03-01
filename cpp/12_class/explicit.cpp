@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
 	string null_book = "9-999-9999-9";
 	sales_item stem(null_book);
 	
-	#ifndef EN_EXPLICIT
+	#ifndef EXPLICIT
 	if (stem.same_isbn(null_book))
 	{
 		cout << "same_isbn true" << endl;

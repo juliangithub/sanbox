@@ -11,13 +11,13 @@
 ================================================================*/
 #ifndef _EXPLICIT_H
 #define _EXPLICIT_H
-#define EN_EXPLICIT
+#define EXPLICIT
 
 class sales_item
 {
 public:
 	
-#ifndef EN_EXPLICIT
+#ifndef EXPLICIT
 	sales_item(const std::string &book = ""):
 		isbn(book),units_sold(0),revenue(0.0){}
 	sales_item(std::istream &is);

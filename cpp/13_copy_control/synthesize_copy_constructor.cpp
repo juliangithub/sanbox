@@ -31,6 +31,7 @@ private:
 	string isbn;
 	int units_sold;
 	double revenue;
+	static static_value;
 	
 };
 //synthesize copy constructor.
@@ -100,7 +101,9 @@ public:
 		pstring(orig.pstring),
 		i(orig.i),
 		d(orig.d)
-		{}
+		{
+			
+		}
 	~NoName(){}
 private:
 	string *pstring;

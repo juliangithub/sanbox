@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset=utf-8>
-<script type="text/javascript" src="jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="jquery-1.12.4.min.js"></script>
 
 <script language="javascript">
 var obj_str = "obj_str :<br/>";
@@ -27,9 +27,18 @@ function show_radio_sel(){
 	var radio_sel = $('input[name="sys_mode"]').filter(':checked').val();
 	alert(radio_sel);
 }
-
+function set_radio_sel(){
+	var value = 0;
+	$("#sys_mode" + value).attr('checked', 'checked');
+}
 function show_check_box(){
-	var wan_enable = ($("#wan_enable").attr("checked")?1:0);
+
+
+	//only v1.9.1 works well.
+	//var wan_enable = ($("#wan_enable").attr("checked")?1:0);
+	//all version of jquery work well .write as below
+	var wan_enable = $('#wan_enable').is(':checked') ? 1 :0;
+	alert(wan_enable);
 }
 
 function set_check_box(flag){
@@ -40,10 +49,9 @@ function init(){
 	alert("__init__");
 	//$("#sys_mode").val(2)
 
-	
+	set_radio_sel();
 	//$("input[name=sys_mode][value='2']").prop("checked",true);
-	var value = 0;
-	$("#sys_mode" + value).attr('checked', 'checked');
+	
 	//var name="sys_mode"
 	//var value = 2;
 	//$("input[name='"+name+"'][value='"+value+"']").prop('checked', true);
@@ -53,11 +61,21 @@ function init(){
 	//$(":radio[name=sys_mode]").val(2);
 	
 	 //$(":radio[name=sin]").val([useranswer]);
+
+	 set_check_box("1");
 }
 
 $(document).ready(function() {
 
-	alert("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	alert("_document.ready");
+
+	json_wl_tag();
+
+	//split eg.
+	var ip="192.168.88.254";
+	var ip4 = ip.split(".")[3];
+	alert("ipv4: " + ip4);
+
 	var wl_band =122342234;
 	var wl_channel = 2;
 	var wl_adv_opower = "power";
@@ -133,6 +151,50 @@ var myObj = {
 	*/
 	
 });
+
+function json_wl_tag()
+{
+
+	var enable = 1;
+	var ssid = "ssid"
+	var hidden = 0;
+	//var hidden = $('#hidden').is(':checked') ? 1 :0;	
+	var channel = 6;
+	var bindwidth = 0;
+	var security = 0;
+	var encrypt = 0;
+	var psk = "psk";
+	var power = 0
+	
+	var jsonObj = { 
+				"enable":enable,
+				"ssid":ssid,
+				"hidden":hidden,
+				"channel":channel,
+				"bindwidth":bindwidth,
+				"security":security,
+				"encrypt":encrypt,
+				"psk":psk,
+				"power":power
+	};
+
+	//var jsonStr = JSON.stringify(jsonObjGet);
+	//var wl_ifname = "wlan0";
+	var wl_ifname = "wlan0-vap0";
+	var jsonStr = "{"
+	var i = 0;
+	for(var p in jsonObj){
+		if(i++ != 0 ){
+			jsonStr += ","
+		}
+		jsonStr += ('"' + wl_ifname + p + '"'+  ":" +'"'+ jsonObj[p]+'"');
+	}
+	jsonStr += "}"
+
+	$("#wl_json").html(jsonStr);
+}
+
+
 </script>
 </head>
 <body onload="init()">
@@ -143,6 +205,10 @@ var myObj = {
 <dt >dt</dt>
 <dl id="debug"></dl>
 </div>
+
+<div id="wl_json">
+	
+</div>
 <div id ="hlo_div">
 <strong id="hlojqry">hello jquery</strong>
 </div>
@@ -152,6 +218,8 @@ var myObj = {
 </span>
 <br>
 <input  type="text" name="wan_mask" value="255.255.0.0"/>
+
+<input class="checkbox" type="checkbox" name="wan_enable" id="wan_enable"  onclick="show_check_box()">
 
 </body>
 </html>
