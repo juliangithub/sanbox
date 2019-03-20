@@ -3,95 +3,35 @@
 <head>
 <meta charset=utf-8>
 <script type="text/javascript" src="jquery-1.12.4.min.js"></script>
-
 <script language="javascript">
-var obj_str = "obj_str :<br/>";
+var obj_str = "obj_str :<pre><br/>";
 function traverse_json_obj(jsonObj){
+	
 	for(var p in jsonObj){
-	//alert(p +  " " + typeof(jsonObj[p]) +":"+jsonObj[p]);
+	//console.log(p +  " " + typeof(jsonObj[p]) +":"+jsonObj[p]);
 
 		if(typeof(jsonObj[p])== "object"){
-			//alert(p +  " " + typeof(jsonObj[p]) +":"+jsonObj[p]);
+			//console.log(p +  " " + typeof(jsonObj[p]) +":"+jsonObj[p]);
 			traverse_json_obj(jsonObj[p]);
 		}
 		else{
-			//alert(p +  " " + typeof(jsonObj[p]) +":"+jsonObj[p]);
-			obj_str += p +  " : " + jsonObj[p] +" : " +  typeof(jsonObj[p])+ ",<br/>";
+			//console.log(p +  " " + typeof(jsonObj[p]) +":"+jsonObj[p]);
+			obj_str += p +  " : " + jsonObj[p] +"     typeof: " +  typeof(jsonObj[p])+ ",<br/>";
 		}
 	}
 }
 
 
-function show_radio_sel(){
-	//var radio_sel = $('input[id=sys_mode]').filter(':checked').val();
-	var radio_sel = $('input[name="sys_mode"]').filter(':checked').val();
-	alert(radio_sel);
-}
-function set_radio_sel(){
-	var value = 0;
-	$("#sys_mode" + value).attr('checked', 'checked');
-}
-function show_check_box(){
-
-
-	//only v1.9.1 works well.
-	//var wan_enable = ($("#wan_enable").attr("checked")?1:0);
-	//all version of jquery work well .write as below
-	var wan_enable = $('#wan_enable').is(':checked') ? 1 :0;
-	alert(wan_enable);
-}
-
-function set_check_box(flag){
-	$("#wan_enable").attr("checked", (flag == "1"?1:0));
-}
-
 function init(){
-	alert("__init__");
-	//$("#sys_mode").val(2)
-
-	set_radio_sel();
-	//$("input[name=sys_mode][value='2']").prop("checked",true);
-	
-	//var name="sys_mode"
-	//var value = 2;
-	//$("input[name='"+name+"'][value='"+value+"']").prop('checked', true);
-	
-	
-	 
-	//$(":radio[name=sys_mode]").val(2);
-	
-	 //$(":radio[name=sin]").val([useranswer]);
-
-	 set_check_box("1");
+	console.log("__init__");
 }
 
 $(document).ready(function() {
 
-	alert("_document.ready");
+	console.log("_document.ready");
 
 	json_wl_tag();
 
-	//split eg.
-	var ip="192.168.88.254";
-	var ip4 = ip.split(".")[3];
-	alert("ipv4: " + ip4);
-
-	var wl_band =122342234;
-	var wl_channel = 2;
-	var wl_adv_opower = "power";
-	var wl_bandwidth = "band";
-	
-	alert($("#hlojqry").html());
-	alert($("#hlo_div").html());
-	alert($("#hlojqry").text());
-	alert($("#hlo_div").text());
-	
-	alert($("#hlo_span").html());
-	$("#hlo_span").html("22222222222222222");;
-	
-	
-	alert($("input[name='wan_mask']").val());
-	
 var myObj = {
     "name":"网站",
     "num":3,
@@ -101,6 +41,10 @@ var myObj = {
         { "name":"Taobao", "info":[ "淘宝", "网购" ] }
     ]
 }
+	var wl_band =122342234;
+	var wl_channel = 2;
+	var wl_adv_opower = "power";
+	var wl_bandwidth = "band";
 
 	var jsonObj = {
 		"form":"wlan0_basic",
@@ -114,41 +58,14 @@ var myObj = {
 		}
 	};
 	
-	traverse_json_obj(jsonObj);
-	$("#debug").html(obj_str);;
-	/*
-		var data = jsonObj.data;
-		for(var p in data){
-			alert(p +  " " + typeof(data[p]) +":"+data[p]);
-		}
-		alert("bbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-		for(var p in jsonObj){
-			alert(jsonObj.data.wl_band);
-			alert(p +  " " + typeof(jsonObj[p]) +":"+jsonObj[p]);
+	 traverse_json_obj(jsonObj);
+	$("#wlan_json").html(obj_str);
 
-			if(typeof(jsonObj[p])== "object"){
-				for(var sub in jsonObj[p]){
-					alert(sub +  " " + typeof(jsonObj[p][sub]) +":"+jsonObj[p][sub]);
-				}
-			}
-			
-		}
-		*/
-		
+	obj_str = "";
+	traverse_json_obj(myObj);
+	$("#json").html(obj_str);;
+	
 
-			/*
-		var json = [
-		{"id":"1","tagName":"apple"},
-		{"id":"2","tagName":"orange"},
-		{"id":"3","tagName":"banana"},
-		{"id":"4","tagName":"watermelon"},
-		{"id":"5","tagName":"pineapple"}
-	];
-	 
-	$.each(json, function(idx, obj) {
-		alert(obj.tagName);
-	});
-	*/
 	
 });
 
@@ -187,7 +104,7 @@ function json_wl_tag()
 		if(i++ != 0 ){
 			jsonStr += ","
 		}
-		jsonStr += ('"' + wl_ifname + p + '"'+  ":" +'"'+ jsonObj[p]+'"');
+		jsonStr += ('"' + wl_ifname + "_" + p + '"'+  ":" +'"'+ jsonObj[p]+'"');
 	}
 	jsonStr += "}"
 
@@ -199,27 +116,18 @@ function json_wl_tag()
 </head>
 <body onload="init()">
 <div class="dialog">
-	<label><input type="radio" name="sys_mode" id="sys_mode0" value="0" onchange="show_radio_sel()"> route</label>
-	<label><input type="radio" name="sys_mode" id="sys_mode1" value="1" onchange="show_radio_sel()"> bridge</label>
-	<label><input type="radio" name="sys_mode" id="sys_mode2" value="2" onchange="show_radio_sel()"> repeater</label>
-<dt >dt</dt>
-<dl id="debug"></dl>
+<dt >json normal :</dt>
+<dl id="json"></dl>
 </div>
 
+<div class="dialog">
+<dt >wlan_json:</dt>
+<dl id="wlan_json"></dl>
+</div>
+
+<hr><br>
+<span>add wlan prefix:</span>
 <div id="wl_json">
-	
 </div>
-<div id ="hlo_div">
-<strong id="hlojqry">hello jquery</strong>
-</div>
-
-<span style="width:160px;" id="hlo_span">
-11111111111111
-</span>
-<br>
-<input  type="text" name="wan_mask" value="255.255.0.0"/>
-
-<input class="checkbox" type="checkbox" name="wan_enable" id="wan_enable"  onclick="show_check_box()">
-
 </body>
 </html>

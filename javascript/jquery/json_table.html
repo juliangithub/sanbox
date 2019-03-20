@@ -92,7 +92,7 @@ function append_ul_li(urls){
 		}
 	);
 	
-	delUrlfilterEntry();
+	
 }
 
 
@@ -117,9 +117,41 @@ function delUrlfilterEntry()
 	}
 	jsonStr += "]" ;
 	
-	$("#debug").html(jsonStr);
+	$("#delUrlfilterEntry").html(jsonStr);
 
 }
+
+function json_array_push(){
+
+// var jsonStr = '{"theTeam":[{"teamId":"1","status":"pending"},{"teamId":"2","status":"member"},{"teamId":"3","status":"member"}]}';
+
+var jsonStr = '{"theTeam":[]}';
+
+
+var obj = JSON.parse(jsonStr);
+obj['theTeam'].push({"teamId":"4","status":"pending"});
+jsonStr = JSON.stringify(obj);
+// "{"theTeam":[{"teamId":"1","status":"pending"},{"teamId":"2","status":"member"},{"teamId":"3","status":"member"},{"teamId":"4","status":"pending"}]}"
+$("#json_array_push").html(jsonStr);
+}
+
+// var del_url_json = {
+// 	"urlusers":[           
+// 	{"url": "http://www.test1.com"},
+// 	{"url": "ttp://www.test2.com"}
+// 	]
+// }
+
+var del_url_json = {
+	"urlusers":[]
+}
+
+function json_array_push_url() {
+
+	del_url_json['urlusers'].push({"url":"http://www.appended.com"});
+	var str = JSON.stringify(del_url_json);
+	$("#json_array_push_url").html(str);
+} 
 
 </script>
 </head>
@@ -152,7 +184,7 @@ function delUrlfilterEntry()
 </ul>
 </div>
 -->
-
+<hr>
 <div class="maclist">
 <ul id="list">
 	<li id="Urladd" name="Urladd"   style="display:none"><em><input type="text" id="url" name="url" size=16 maxlength=30 > </em></li>
@@ -161,9 +193,21 @@ function delUrlfilterEntry()
 
 </ul>
 </div>
+<hr>
+<b>delUrlfilterEntry:  </b>
+<input type="button" name="" value="delUrlfilterEntry" onclick="delUrlfilterEntry();">
+<dl id="delUrlfilterEntry"></dl>
 
+<hr>
+<b>json_array_push:  </b>
+<input type="button" name="" value="json_array_push" onclick="json_array_push();">
+<br>
+<dl id="json_array_push"></dl>
 
-<dl id="debug"></dl>
-
+<hr>
+<b>json_array_push_url:  </b>
+<input type="button" name="" value="json_array_push_url" onclick="json_array_push_url();">
+<br>
+<dl id="json_array_push_url"></dl>
 </body>
 </html>
