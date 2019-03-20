@@ -1,0 +1,67 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <script type="text/javascript" src="jquery-1.9.0.min.js"></script>
+    <script language="javascript">
+        var tmpData = {
+            "urlusers":[           
+            {"url": "http://www.test1.com"},
+            {"url": "ttp://www.test2.com"}
+            ]  
+        }  
+
+        $(document).ready(function(){
+         var html = $('script[type="text/template"]').html();  
+         var arr = [];  
+         $.each(tmpData.urlusers, function(i, cell) {
+
+            cell.index = i;
+            cell.list_type = "list_black";
+            var obj = html.tplate(cell)
+            console.log(obj);
+            arr.push(obj);  
+        });  
+         $('#list').append(arr.join(''));  
+     });
+
+
+        String.prototype.tplate = function(obj) {
+            var format = {  
+                name: function(x) {  
+                    return x ; 
+                }  
+            };  
+            return this.replace(/{(\w+)}/g, function(m1, m2) {  
+                if (!m2)  
+                    return "";  
+                return (format && format[m2]) ? format[m2](obj[m2]) : obj[m2];  
+            });
+        };
+
+    </script>
+
+
+
+</head>
+
+<body>
+    <div class="maclist">
+        <ul id ="list">
+            <li id="Urladd" name="Urladd"   style="display:none">
+                <em><input type="text" id="url" name="url" size=16 maxlength=30 ></em>
+            </li>
+            <input type="hidden" value="Delete Selected" name="deleteSelFilterUrl">
+            <input type="hidden" id="urlfilter_num" value="6">
+        </ul>
+        <script type="text/template">  
+            <li id="em_{index}" class="{list_type}">
+                <em>
+                    <input id="select{index}" size="16" maxlength="20" bgcolor="#e1e1e1" readonly="" name="select{index}" value="{url}">
+                </em>
+                <span onclick="del({index});"></span>
+            </li>
+        </script>
+    </div>
+
+</body>
+</html>

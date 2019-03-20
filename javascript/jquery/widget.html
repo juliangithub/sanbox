@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+<script language="javascript">
+function show_radio_sel(){
+	var radio_sel = $('input[name="sys_mode"]').filter(':checked').val();
+	console.log(radio_sel);
+}
+function set_radio_sel(){
+	var value = 0;
+	$("#sys_mode" + value).attr('checked', 'checked');
+}
+function show_check_box(){
+	//only v1.9.1 works well.
+	//var wan_enable = ($("#wan_enable").attr("checked")?1:0);
+	//all version of jquery work well .write as below
+	var wan_enable = $('#wan_enable').is(':checked') ? 1 :0;
+	console.log("wan_enable: " + wan_enable);
+}
+
+function set_check_box(id, flag){
+	$("#"+id).attr("checked", ((flag == "1" || flag == 1 )?1:0));
+}
+
+function init(){
+	console.log("__init__");
+	set_radio_sel();
+	set_check_box("wan_enable", "1");
+}
+
+$(document).ready(function() {
+	console.log("_document.ready");
+	//split eg.
+	var ip="192.168.88.254";
+	var ip4 = ip.split(".")[3];
+	console.log("ipv4: " + ip4);
+
+	console.log($("#hlojqry").html());
+	console.log($("#hlo_div").html());
+	console.log($("#hlojqry").text());
+	console.log($("#hlo_div").text());
+	
+	console.log("before overwrite:" + $("#hlo_span").html());
+	$("#hlo_span").html("overwrite html string");;
+		
+	console.log($("input[name='wan_mask']").val());
+	
+});
+
+var select_array = [
+	{"id":"a","tagName":"apple"},
+	{"id":"b","tagName":"orange"},
+	{"id":"c","tagName":"banana"},
+	{"id":"d","tagName":"watermelon"},
+	{"id":"e","tagName":"pineapple"}
+];
+function select_append(){
+	$.each(select_array, function(idx, obj) {
+		$("#select_id").append('<option value=' + obj.id +'>' +obj.tagName +'<option>');
+		console.log(obj.tagName);
+	});
+
+}
+function select_pre_append(){
+	var id = "o";
+	var tagName = "default"
+	$("#select_id").prepend('<option value=' + id +'>' + tagName +'<option>');
+}
+function select_remove_last(){
+	 $("#select_id option:last").remove();
+}
+function select_remove_index(){
+	 $("#select_id option[index='1']").remove(); 
+}
+function select_remove_value(){
+	 $("#select_id option[value='b']").remove(); 
+}
+function select_remove_text(){
+	 $("#select_id option[text='watermelon']").remove(); 
+}
+</script>
+</head>
+<body onload="init()">
+<div class="dialog">
+	<span>radio array:</span>
+	<label><input type="radio" name="sys_mode" id="sys_mode0" value="0" onchange="show_radio_sel()"> route</label>
+	<label><input type="radio" name="sys_mode" id="sys_mode1" value="1" onchange="show_radio_sel()"> bridge</label>
+	<label><input type="radio" name="sys_mode" id="sys_mode2" value="2" onchange="show_radio_sel()"> repeater</label>
+
+</div>
+
+<hr>
+<div id ="hlo_div">
+<strong id="hlojqry">difference betwen $(id).html() and $(id).text() </strong>
+</div>
+
+<hr>
+<span style="width:160px;" id="hlo_span">
+hello span origin string
+</span>
+
+<hr><br>
+<span> input text: </span>
+<input  type="text" name="wan_mask" value="255.255.0.0"/>
+<hr>
+<span> check box: </span>
+<input class="checkbox" type="checkbox" name="wan_enable" id="wan_enable"  onclick="show_check_box()">
+<hr>
+<span>select:</span>
+<select id="select_id">
+</select>
+<br>
+<input type="button" value="append " onclick="select_append()">
+<input type="button" value="pre_append " onclick="select_pre_append()">
+<input type="button" value="remove last option" onclick="select_remove_last()">
+<input type="button" value="remove by index " onclick="select_remove_index()">
+<input type="button" value="remove by value " onclick="select_remove_value()">
+<input type="button" value="remove by text " onclick="select_remove_text()">
+</body>
+</html>
