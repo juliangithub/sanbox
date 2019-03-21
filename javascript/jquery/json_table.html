@@ -9,45 +9,6 @@
 </style>
 
 <script language="javascript">
-
-function show_unauthlist()
-{
-    var formname = $("#formname").val();
-    var gtmstring = "formname:"+formname+"&action:get_table&argument:";
-    $.ajax({
-            type: "POST",
-            url: "cgi-bin/webproc.cgi",
-            data: gtmstring,
-            dataType: "json",
-            success: function(msg){
-				$.each(msg, function (i, w_list)
-				{
-					var w_row = w_list.row;
-                    var w_mac = w_list.cnu_mac
-					
-					//创建表格
-					var create_tr = "<tr>"
-                        +"<td width='20'><input type='checkbox' name='input_check_' onclick='util_checkbox_oncheck();' id="+w_mac+"></td>"
-						 + "<td >" + w_row + "</td>" 
-						 + "<td >" + w_mac+ "</td>"
-						 + "</tr>";
-					//alert(create_tr);
-					$("#table_cnu_unauthlist").append(create_tr);
-				}
-				);
-				
-              }
-        
-        });	
-
-
-}
-
-function util_checkbox_oncheck(){
-
-	alert("Are you sure to del all entry !");
-}
-
 var employees = [
 { "firstName":"Bill" , "lastName":"Gates" },
 { "firstName":"George" , "lastName":"Bush" },
@@ -91,72 +52,24 @@ function append_ul_li(urls){
 			$("#list").append(create_tr);
 		}
 	);
-	
-	
 }
 
-
-function delUrlfilterEntry()
-{
-	
-	var nums = 4
-	var url = $("#url").val();
-	var jsonStr = "[" ;
-	for(var i=1;i<=nums; i++){
-		jsonStr += "{" ;
-		jsonStr += ("\"index\":\"" + i + "\",");
-		jsonStr += ("\"ruleMode\":\"" + $("#em_"+i).attr("class") + "\",");
-		jsonStr += ("\"url\":\"" + $("#select" +i).val()) + "\"";
-		jsonStr += "}" ;
-		
-		if(i<nums)
-		{
-			jsonStr += "," ;
-		}
-		
-	}
-	jsonStr += "]" ;
-	
-	$("#delUrlfilterEntry").html(jsonStr);
-
-}
-
-function json_array_push(){
-
-// var jsonStr = '{"theTeam":[{"teamId":"1","status":"pending"},{"teamId":"2","status":"member"},{"teamId":"3","status":"member"}]}';
-
-var jsonStr = '{"theTeam":[]}';
-
-
-var obj = JSON.parse(jsonStr);
-obj['theTeam'].push({"teamId":"4","status":"pending"});
-jsonStr = JSON.stringify(obj);
-// "{"theTeam":[{"teamId":"1","status":"pending"},{"teamId":"2","status":"member"},{"teamId":"3","status":"member"},{"teamId":"4","status":"pending"}]}"
-$("#json_array_push").html(jsonStr);
-}
-
-// var del_url_json = {
-// 	"urlusers":[           
-// 	{"url": "http://www.test1.com"},
-// 	{"url": "ttp://www.test2.com"}
-// 	]
-// }
 
 var del_url_json = {
 	"urlusers":[]
 }
 
+var url_idx = 0;
 function json_array_push_url() {
-
-	del_url_json['urlusers'].push({"url":"http://www.appended.com"});
+	del_url_json['urlusers'].push({"index" : ++url_idx, "url":"http://www.appended.com"});
 	var str = JSON.stringify(del_url_json);
 	$("#json_array_push_url").html(str);
 } 
 
 </script>
 </head>
-<body onload="append_ul_li(urlJSON)">
-
+<body>
+<input type="button" name="table_append_trigger" value="append table td" onclick="append_table_td()">
     <table id="table_employees" class="box_tn" align="center" border="0" cellpadding="5" cellspacing="1" width="100%">
     <tbody>
       <tr>
@@ -169,41 +82,13 @@ function json_array_push_url() {
     </tbody>
     </table>
 
-<!--
-<div class="maclist">
-<ul>
-	<li id="Urladd" name="Urladd"   style="display:none"><em><input type="text" id="url" name="url" size=16 maxlength=30 > </em></li>
-	<input type="hidden" value="Delete Selected" name="deleteSelFilterUrl">
-	<input type="hidden" id="urlfilter_num" value="6">
-	<li id="em_1" class="list_black"><em><input id="select1" size="16" maxlength="20" bgcolor="#e1e1e1" readonly="" name="select1" value="www.balck2.com"></em><span onclick="del(1);"></span></li>
-	<li id="em_2" class="list_black"><em><input id="select2" size="16" maxlength="20" bgcolor="#e1e1e1" readonly="" name="select2" value="www.balck1.com"></em><span onclick="del(2);"></span></li>
-	<li id="em_3" class="list_white"><em><input id="select3" size="16" maxlength="20" bgcolor="#e1e1e1" readonly="" name="select3" value="www.white1.com"></em><span onclick="del(3);"></span></li>
-	<li id="em_4" class="list_white"><em><input id="select4" size="16" maxlength="20" bgcolor="#e1e1e1" readonly="" name="select4" value="www.white2.com"></em><span onclick="del(4);"></span></li>
-	<li id="em_5" class="list_black"><em><input id="select5" size="16" maxlength="20" bgcolor="#e1e1e1" readonly="" name="select5" value="www.balck3.com"></em><span onclick="del(5);"></span></li>
-	<li id="em_6" class="list_black"><em><input id="select6" size="16" maxlength="20" bgcolor="#e1e1e1" readonly="" name="select6" value="www.balck5.com"></em><span onclick="del(6);"></span></li>
-</ul>
-</div>
--->
 <hr>
+<input type="button" name="ul_li_trigger" value="append ul li" onclick="append_ul_li(urlJSON)">
+
 <div class="maclist">
 <ul id="list">
-	<li id="Urladd" name="Urladd"   style="display:none"><em><input type="text" id="url" name="url" size=16 maxlength=30 > </em></li>
-	<input type="hidden" value="Delete Selected" name="deleteSelFilterUrl">
-	<input type="hidden" id="urlfilter_num" value="6">
-
 </ul>
 </div>
-<hr>
-<b>delUrlfilterEntry:  </b>
-<input type="button" name="" value="delUrlfilterEntry" onclick="delUrlfilterEntry();">
-<dl id="delUrlfilterEntry"></dl>
-
-<hr>
-<b>json_array_push:  </b>
-<input type="button" name="" value="json_array_push" onclick="json_array_push();">
-<br>
-<dl id="json_array_push"></dl>
-
 <hr>
 <b>json_array_push_url:  </b>
 <input type="button" name="" value="json_array_push_url" onclick="json_array_push_url();">
