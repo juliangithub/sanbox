@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset=utf-8>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="jquery-1.12.4.min.js"></script>
 <script language="javascript">
 function show_radio_sel(){
@@ -56,9 +57,10 @@ var select_array = [
 	{"id":"d","tagName":"watermelon"},
 	{"id":"e","tagName":"pineapple"}
 ];
+
 function select_append(){
 	$.each(select_array, function(idx, obj) {
-		$("#select_id").append('<option value=' + obj.id +'>' +obj.tagName +'<option>');
+		$("#select_id").append('<option value=' + obj.id +'>' +obj.tagName +'</option>');
 		console.log(obj.tagName);
 	});
 
@@ -66,7 +68,7 @@ function select_append(){
 function select_pre_append(){
 	var id = "o";
 	var tagName = "default"
-	$("#select_id").prepend('<option value=' + id +'>' + tagName +'<option>');
+	$("#select_id").prepend('<option value=' + id +'>' + tagName +'</option>');
 }
 function select_remove_last(){
 	 $("#select_id option:last").remove();
@@ -80,6 +82,35 @@ function select_remove_value(){
 function select_remove_text(){
 	 $("#select_id option[text='watermelon']").remove(); 
 }
+
+function EnabelCtrl()
+{
+        
+        if(!$("#enable").attr("class").includes("switchoff") )
+        {
+                $("#enable").addClass("switchoff");
+
+        }else{
+                $("#enable").removeClass("switchoff");
+        }
+        
+}
+
+function OnOff()
+{
+
+	if($("#ssid1_enable").attr("class") == "wlanon")
+	{
+		$("#ssid1_enable").removeClass();
+		$("#ssid1_enable").addClass("wlanoff");
+	}
+	else
+	{
+		$("#ssid1_enable").removeClass();
+		$("#ssid1_enable").addClass("wlanon");
+	}
+}
+
 </script>
 </head>
 <body onload="init()">
@@ -118,5 +149,29 @@ hello span origin string
 <input type="button" value="remove by index " onclick="select_remove_index()">
 <input type="button" value="remove by value " onclick="select_remove_value()">
 <input type="button" value="remove by text " onclick="select_remove_text()">
+
+<hr>
+<h4>
+	switch demo:
+</h4>
+<div class="cfgright">
+	<table border='0' width="460">
+	<tr>
+		<td style="width:18%" align="left"><font size=2><span>buttonclass:</span></td>
+		<td width="52%"  height="25" align="left" >
+			<div class="selectswitch" id="enable">
+		    <em class="closestate"></em>
+		    	<span>
+		    		<strong id="switch_enable" onclick="EnabelCtrl();"></strong>
+		    	</span>
+		    <em class="openstate"></em>
+			</div>	
+		</td>
+	 	<td width="30%"></td>
+	</tr>
+	</table>
+</div>
+
+<input type="button" class="wlanon" id="ssid1_enable" value="" onClick="OnOff()"/>
 </body>
 </html>
