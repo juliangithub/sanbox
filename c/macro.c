@@ -49,6 +49,10 @@ static char *compile_opts =
 "IDN";
 
 
+#ifdef TEST_ERROR
+#error "TEST_ERROR has been defined" 
+#else
+#endif
 
 
 #define PSQR(x) printf("the square value of " #x " is %d \n", ((x)*(x)))

@@ -55,7 +55,7 @@ int main(int argc, char const *argv[])
 	char str2[] = " string2";
 	char *const p_cst = str1;
 	const char *const  p_ccst = cststr;
-
+	
 	cout << "p_cst: " << p_cst << endl;
 	cout << "p_ccst: " << p_ccst << endl;
 	//error: p_cst's addr is const ,read only.

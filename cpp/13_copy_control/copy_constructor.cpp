@@ -35,7 +35,7 @@ int main(int argc, char const *argv[])
 	
 	for(vector<string>::size_type idx=0; idx != vstr.size(); idx++)
 	{
-		cout << "idx:" << idx <<"\t:"<< vstr                [idx] <<endl;
+		cout << "idx:" << idx <<"\t:"<< vstr[idx] <<endl;
 	}
 
 

@@ -14,7 +14,8 @@ int main()
         int num;
         char chr;
         char str[32]={0x0};
-		printf("%zu %zu %zu \n", sizeof(num), sizeof(chr), sizeof(str));
+		printf("direct sizeof %zu %zu %zu \n", sizeof(num), sizeof(chr), sizeof(str));
+
         sizeof_point(&num,&chr, str);
 
         

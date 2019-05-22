@@ -38,6 +38,6 @@ sales_item& sales_item::operator=(const sales_item& rhs)
 
 int main(int argc, char const *argv[])
 {
-	
+
 	return 0;
 }
