@@ -48,16 +48,23 @@ enum{
         printf("\033[1;35m[SK_TRACE:%s %d]\033[0m\n",__FUNCTION__,__LINE__);\
     }
 
+int call_back(void){
+
+	printf("call_back\n");
+	return 0;
+}
 int main(int argc, char const *argv[])
 {
 
 	SK_TRACE();
-	SK_DEBUG("11111111111111111111");
-	SK_INFO("11111111111111111111");
-	SK_ERROR("11111111111111111111");
+	SK_DEBUG("__debug__");
+	SK_INFO("__info__");
+	SK_ERROR("__error__");
 
 
 	int num = 10241024;
+	char buf[32]={0x0};
+	static int s_num = 123123;
 	unsigned int num_unit = 10241024;
 	printf("%u\n", num_unit);
 	printf("%#4x\n", num);
@@ -65,8 +72,13 @@ int main(int argc, char const *argv[])
 	printf("%#2.2x\n", num);
 	//printf("%#d\n", num);
 	printf("%#o\n", num);
+	printf("addr num:%p\n", &num);
+	printf("addr s_num:%p\n", &s_num);
+	printf("addr buf %p\n", buf);
 
-
+	int (*p_cb)(void);
+	p_cb = call_back;
+	printf("call_back : %p\n", p_cb);
 
 
 

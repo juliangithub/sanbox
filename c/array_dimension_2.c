@@ -13,6 +13,7 @@
 #include <stdio.h>
 int main(int argc, char const *argv[])
 {
+		int i = 0;
 		char req_mode_str[][64] = {"get", "set", "get_table", "add_table", "del_table"
 		};
 		printf("%s\n", req_mode_str[0]);
@@ -20,5 +21,9 @@ int main(int argc, char const *argv[])
 		printf("%s\n", req_mode_str[2]);
 		printf("%s\n", req_mode_str[3]);
 		printf("%s\n", req_mode_str[4]);
+		
+		for(i=0;i<5;i++){
+			printf("%s\n", req_mode_str[i]);
+		}
 	return 0;
 }
