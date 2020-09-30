@@ -24,21 +24,21 @@ typedef struct cgi_item
 typedef struct cgi_item CGI_ITEM;
 
 CGI_ITEM *value_list = NULL;
-void main()
+int main()
 {
 
     
-    char data[] = "set_vmode=transparent,eth1_mode=access,eth2_mode=trunk";
+    char data[] = "set_vmode=transparent, eth1_mode=access, eth2_mode=trunk";
     char *kv[256];
     int i;
     int j = 0;
      
     //kv[0] = strtok(data, ',');
-    kv[0] = strtok(data, ",");
+    kv[0] = strtok(data, ", ");
     
     for(i = 1;i < 256;i++)
     {
-        kv[i] = strtok(NULL, ",");
+        kv[i] = strtok(NULL, ", ");
         if (kv[i] == NULL)
         break;
     }
@@ -77,5 +77,5 @@ void main()
     
     }
         
-    
+  return 0; 
 }

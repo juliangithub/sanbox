@@ -60,12 +60,22 @@ int main(int argc, char const *argv[])
 	SK_DEBUG("__debug__");
 	SK_INFO("__info__");
 	SK_ERROR("__error__");
+	SK_ERROR("%s %s", __DATE__, __TIME__);
 
 
 	int num = 10241024;
 	char buf[32]={0x0};
 	static int s_num = 123123;
 	unsigned int num_unit = 10241024;
+	long l_num = 223344;
+	unsigned long int ul_num = 112233;
+	long long ll_num = 334455;
+	unsigned long long ull_num = 99887766;
+
+	printf("long %%ld %ld\n", l_num);
+	printf("unsigned long %%lu %lu\n", ul_num);
+	printf("long long %%lld %lld\n", ll_num);
+	printf("unsigned long long %%llu %llu\n", ull_num);
 	printf("%u\n", num_unit);
 	printf("%#4x\n", num);
 	printf("%#4.4x\n", num);

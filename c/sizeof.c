@@ -14,7 +14,12 @@ int main()
         int num;
         char chr;
         char str[32]={0x0};
-		printf("direct sizeof %zu %zu %zu \n", sizeof(num), sizeof(chr), sizeof(str));
+	long lnum;
+	long long llnum;
+	unsigned long long ullnum;
+	unsigned total;
+		printf("direct sizeof int: %zu char:%zu buf:%zu \n", sizeof(num), sizeof(chr), sizeof(str));
+		printf("sizeof long: %zu long long: %zu unsigned long long: %zu unsigned: %zu\n", sizeof(lnum), sizeof(llnum),sizeof(ullnum),sizeof(total));
 
         sizeof_point(&num,&chr, str);
 

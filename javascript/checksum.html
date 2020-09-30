@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<script type="text/javascript">
+
+/*
+str="A";
+code = str.charCodeAt(); 
+str2 = String.fromCharCode(code);
+str3 = String.fromCharCode(0x60+26);
+document.write(code+'<br />');
+document.write(str2+'<br />');
+document.write(str3);
+*/
+
+	function checksum(argument) {
+		var sum = 0;
+		//var str = "12/34/56"
+		str = document.getElementById("input").value ;
+		if(str === "")
+		{
+			alert("invalid string !")
+			return;
+		}
+		
+		for (var i = 0; i < str.length; i++) 
+		{
+			if (str[i] === '|') {
+			} else {
+				sum += str[i].charCodeAt();
+			}
+		}
+		//alert(sum);
+		sum = parseInt(sum / 0xff );
+		//alert(sum);
+		document.getElementById("result").innerHTML  = "" + sum ;
+	}
+
+</script>
+<body>
+<h1>check sum  of string ,filter out '/'</h1>
+<textarea rows="5" cols="180" id="input"></textarea>
+<br>
+<br>
+<input type="button" align="center" onclick="checksum();" value="submit">
+<br>
+<br>
+ <textarea rows="5" cols="180" id="result" readonly="readonly">
+</textarea>
+
+</body>
+</html>

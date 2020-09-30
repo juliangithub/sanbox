@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 分组选择器 */
+        h1,h2,h3{
+            color:#FF00FF;
+        }
+        /* 嵌套选择器 */
+        p{
+            color:blue;
+            text-align:center;
+        }
+        .marked{background-color:chartreuse;}
+        .marked p {
+            background-color: blueviolet;
+        }
+        p.marked{
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+    <h1>HeadLine 1</h1>
+    <h2>HeadLine2</h2>
+    <h3>HeadLine3</h3>
+    <p>progragh</p>
+    <dev class="marked">
+        marked
+    </dev>
+    <P class="marked">
+        <dev>
+            p.marked
+        </dev>
+    </P>
+    <dev class="marked">
+        <p>marked .p</p>
+    </dev>
+</body>
+</html>
